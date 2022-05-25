@@ -4,6 +4,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DigimonModel } from '../model/digimon.modal';
+import { AlmacenPdfModule } from 'src/utils/generador.pdf';
 
 @Component({
   selector: 'app-digimon',
@@ -37,8 +38,12 @@ export class DigimonComponent implements OnInit{
 		
 	}
 
-	search(filter:string){
-		this.dataSource.filter = filter;
+	// search(filter:string){
+	// 	this.dataSource.filter = filter;
+	// }
+
+	async abrirpdf() {
+  		(await AlmacenPdfModule.Pokemon.create(this.digimones)).download(`Reporte-Pokemon.pdf`);
 	}
 	
 }

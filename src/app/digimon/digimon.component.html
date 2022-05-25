@@ -2,13 +2,14 @@
   <li> {{digimon.name}} </li>
 </ul> -->
 
-<div class="container-fluid">
+<div class="container">
 	
 	<div class="titulo">
 		<h1> CONSUMO DE API REST - POKÉMON </h1>
 	</div>
 	<div class="busqueda">
 		<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+		<button type="button" class="btn btn-success m-3" (click)="abrirpdf()"> Generar PDF</button> 
 	</div>
 
 <table class="table" *ngFor="let digimon of digimones">

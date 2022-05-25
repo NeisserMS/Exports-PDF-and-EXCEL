@@ -7,11 +7,11 @@ import { AlmacenPdfModule } from 'src/utils/generador.pdf';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'generador-pdf';
 
-  
-async abrirpdf() {
-  (await AlmacenPdfModule.Humedad.create()).download(`Reporte.pdf`);
-  }
+  title = 'Pokémon';
+
+// async abrirpdf() {
+//   (await AlmacenPdfModule.Humedad.create()).download(`Reporte.pdf`);
+//   }
 
 }
