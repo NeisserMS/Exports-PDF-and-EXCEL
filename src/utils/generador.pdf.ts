@@ -1,24 +1,11 @@
 import { PDFUtil } from "./pdf.utils";
 import { Canvas, Cell, Columns, Img, Line, Stack, Table, Txt } from "pdfmake-wrapper";
-import { IContentDefinition, ICreatePDF } from "pdfmake-wrapper/lib/interfaces";
-import { createInjectableType } from "@angular/compiler";
+import { ICreatePDF } from "pdfmake-wrapper/lib/interfaces";
 import { DigimonModel } from "src/app/model/digimon.modal";
 
-type InfoType = { title: string, value: string };
-type NaveType = { campo1: string, campo2: string, campo3: string, campo4: string, campo5: string, campo6: string, campo7: string, campo8: string };
-type RemuneracionType = { concepto: string, horaDia: string, importe: string };
-type AportacionType = { concepto: string, importe: string };
 
-// interface DataResponse {
-//     id: number;
-//     userId: number;
-//     title_: string;
-//     completed:boolean;
-// }
 
-// type TableRow = [number, number, string, boolean];
 export module AlmacenPdfModule {
-
     export class Pokemon extends PDFUtil {
         static async create(data: DigimonModel[]): Promise<ICreatePDF> {
 
@@ -50,13 +37,19 @@ export module AlmacenPdfModule {
                     ],
 
                     ...content,
+                    [
+                        new Cell(new Txt(`TOTAL DE POKÉMONS: ${data.length}`).style("cellbold").alignment("left").end).colSpan(3).end, {}, {},
+                    ]
                 ],
 
             ).widths(["*", "*", "*"]).end;
 
+            let footer = new Stack([
+                new Txt("Espero sea de ayuda - Atte. Neisser Moreno").style("cell").alignment("right").margin([0, 10, 0, 10]).end
+            ]).end;
+
             pdf.add(tabla);
-
-
+            pdf.add(footer);
 
             return pdf.create();
         }

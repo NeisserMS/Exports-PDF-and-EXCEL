@@ -1,61 +1,31 @@
-<!-- <ul *ngFor="let digimon of digimones">
-  <li> {{digimon.name}} </li>
-</ul> -->
 
 <div class="container">
-	
+
 	<div class="titulo">
 		<h1> CONSUMO DE API REST - POKÉMON </h1>
 	</div>
 	<div class="busqueda">
-		<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
-		<button type="button" class="btn btn-success m-3" (click)="abrirpdf()"> Generar PDF</button> 
+		<input class="form-control" id="myInput" type="text" placeholder="Buscar.." name="filterPost"
+			[(ngModel)]="filterPost">
+		<button type="button" class="btn btn-success m-3" (click)="abrirpdf()"> Generar PDF</button>
 	</div>
 
-<table class="table" *ngFor="let digimon of digimones">
-	<thead>
-	  <tr>
-		<th scope="col">Nombre</th>
-		<th scope="col">Link Imagen</th>
-		<th scope="col">Estado</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr>
-		<td>{{digimon.name}}</td>
-		<td> {{ digimon.img}}</td>
-		<td>{{digimon.level}}</td>
-	  </tr>
-	</tbody>
-  </table>
-
-	<!-- <div class="mat-elevation-z8">
-		<table mat-table [dataSource]="dataSource">
-
-			<ng-container matColumnDef="nombre">
-				<th mat-header-cell *matHeaderCellDef> Nombre </th>
-				<td mat-cell *matCellDef="let element"> {{element.name}} </td>
-			</ng-container>
-			
-			<ng-container matColumnDef="imagen">
-				<th mat-header-cell *matHeaderCellDef> Imagen</th>
-				<td mat-cell *matCellDef="let element"> {{element.img}} </td>
-			</ng-container>
-
-			<ng-container matColumnDef="nivel">
-				<th mat-header-cell *matHeaderCellDef> Nivel </th>
-				<td mat-cell *matCellDef="let element"> {{element.level}} </td>
-			</ng-container>
-
-			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-		</table>
-	</div> -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Link Imagen</th>
+				<th scope="col">Estado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let digimon of digimones | search: filterPost">
+				<td>{{digimon.name}}</td>
+				<td> {{digimon.img}}</td>
+				<td>{{digimon.level}}</td>
+			</tr>
+		</tbody>
+	</table>
 
 	<footer> Copyright © | Neisser Moreno Sanchez</footer>
 </div>
-
-<!-- Debajo de table -->
-<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-			aria-label="Select page of periodic elements">
-		</mat-paginator> -->
