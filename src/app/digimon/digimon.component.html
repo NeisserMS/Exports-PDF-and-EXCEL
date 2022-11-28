@@ -1,13 +1,14 @@
 
 <div class="container">
-
 	<div class="titulo">
-		<h1> CONSUMO DE API REST - POKÉMON </h1>
+		<img src="assets/pokemon.png" alt="">
+		<h1> CONSUMO DE API REST Y GENERADOR DE REPORTES </h1>
 	</div>
 	<div class="busqueda">
 		<input class="form-control" id="myInput" type="text" placeholder="Buscar.." name="filterPost"
 			[(ngModel)]="filterPost">
-		<button type="button" class="btn btn-success m-3" (click)="abrirpdf()"> Generar PDF</button>
+		<button type="button" class="btn btn-danger m-3" (click)="abrirpdf()"> Generar PDF</button>
+		<button type="button" class="btn btn-success" (click)="abrirExcel()"> Generar Excel</button>
 	</div>
 
 	<table class="table">

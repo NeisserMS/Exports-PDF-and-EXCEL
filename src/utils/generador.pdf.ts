@@ -1,9 +1,7 @@
 import { PDFUtil } from "./pdf.utils";
-import { Canvas, Cell, Columns, Img, Line, Stack, Table, Txt } from "pdfmake-wrapper";
+import { Cell, Img, Stack, Table, Txt } from "pdfmake-wrapper";
 import { ICreatePDF } from "pdfmake-wrapper/lib/interfaces";
 import { DigimonModel } from "src/app/model/digimon.modal";
-
-
 
 export module AlmacenPdfModule {
     export class Pokemon extends PDFUtil {
@@ -11,23 +9,32 @@ export module AlmacenPdfModule {
 
             let pdf = this.getInstance();
             let content: any[] = [];
+            
+            let fecha = new Date();
+      
+            let encabezado = new Table(
+                [
+                    [
+                        await new Img("assets/pokemon.png").margin([5, 0, 0, 0]).fit([150, 150]).build(),
+                        new Txt("LISTA DE POKÉMONES").style("title").margin([0, 45, 0, 10]).fontSize(13).color("blue").end,
+                        new Txt(`${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`).margin([40, 45, 0, 0]).end
+                    ],
+                ],
 
-            let titulo = new Stack([
-                new Txt("LISTA DE POKÉMONES").style("title").margin([0, 10, 0, 10]).end
-            ]).end;
+            ).widths(["*", "*", "*"]).layout('noBorders').end;
 
             for (let item of data) {
                 content.push(
                     [
                         new Txt(item.name).style("cell").end,
-                        new Txt(item.img).style("cell").end,
+                        // new Txt(item.img).style("cell").end,
                         new Txt(item.level).style("cell").end,
                     ]
                 );
             }
-
-            pdf.add(titulo);
-
+            
+            pdf.add(encabezado);
+      
             let tabla = new Table(
                 [
                     [

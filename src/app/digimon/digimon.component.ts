@@ -31,7 +31,10 @@ export class DigimonComponent implements OnInit {
 	async abrirpdf() {
 		(await AlmacenPdfModule.Pokemon.create(this.digimones)).download(`Reporte-Pokemon.pdf`);
 	}
-
+	
+	async abrirExcel() {
+		(await AlmacenPdfModule.Pokemon.create(this.digimones)).download(`Reporte-Pokemon.pdf`);
+	}
 }
 
 
