@@ -4,7 +4,7 @@ export class PDFUtil {
 
     static getInstance(): PdfMakeWrapper {
         const pdf = new PdfMakeWrapper();
-        pdf.pageMargins([40, 60, 40, 60]);
+        pdf.pageMargins([40, 30, 40, 60]);
         pdf.pageSize('A4');
         pdf.styles({
             title: { fontSize: 12, bold: true, alignment: 'center', color: '#000000' },

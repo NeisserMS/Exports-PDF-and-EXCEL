@@ -27,7 +27,7 @@ export module AlmacenPdfModule {
                 content.push(
                     [
                         new Txt(item.name).style("cell").end,
-                        // new Txt(item.img).style("cell").end,
+                        new Txt(item.img).style("cell").end,
                         new Txt(item.level).style("cell").end,
                     ]
                 );
