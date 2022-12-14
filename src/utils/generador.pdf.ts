@@ -2,22 +2,22 @@ import { PDFUtil } from "./pdf.utils";
 import { Cell, Img, Stack, Table, Txt } from "pdfmake-wrapper";
 import { ICreatePDF } from "pdfmake-wrapper/lib/interfaces";
 import { DigimonModel } from "src/app/model/digimon.modal";
-
-export module AlmacenPdfModule {
-    export class Pokemon extends PDFUtil {
+import { LOGO } from "src/assets/logo";
+export module PdfDigimonModule {
+    export class Digimon extends PDFUtil {
         static async create(data: DigimonModel[]): Promise<ICreatePDF> {
 
             let pdf = this.getInstance();
             let content: any[] = [];
-            
+
             let fecha = new Date();
-      
+
             let encabezado = new Table(
                 [
                     [
-                        await new Img("assets/pokemon.png").margin([5, 0, 0, 0]).fit([150, 150]).build(),
-                        new Txt("LISTA DE POKÉMONES").style("title").margin([0, 45, 0, 10]).fontSize(13).color("blue").end,
-                        new Txt(`${fecha.getFullYear()}-${fecha.getMonth()+1}-${fecha.getDate()}`).margin([40, 45, 0, 0]).end
+                        await new Img(LOGO).margin([5, 0, 0, 0]).fit([150, 150]).build(),
+                        new Txt("LISTA DE DIGIMONES").style("title").margin([0, 32, 0, 10]).fontSize(13).color("blue").end,
+                        new Txt(`${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`).margin([40, 32, 0, 0]).end
                     ],
                 ],
 
@@ -32,9 +32,9 @@ export module AlmacenPdfModule {
                     ]
                 );
             }
-            
+
             pdf.add(encabezado);
-      
+
             let tabla = new Table(
                 [
                     [
@@ -52,7 +52,7 @@ export module AlmacenPdfModule {
             ).widths(["*", "*", "*"]).end;
 
             let footer = new Stack([
-                new Txt("Espero sea de ayuda - Atte. Neisser Moreno").style("cell").alignment("right").margin([0, 10, 0, 10]).end
+                new Txt("Atte. Neisser Moreno").style("cell").alignment("right").margin([0, 10, 0, 10]).end
             ]).end;
 
             pdf.add(tabla);

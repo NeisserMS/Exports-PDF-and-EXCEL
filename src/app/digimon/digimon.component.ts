@@ -1,9 +1,10 @@
 
 import { DigimonService } from '../service/digimon.service';
 import { Component, OnInit } from '@angular/core';
-
 import { DigimonModel } from '../model/digimon.modal';
-import { AlmacenPdfModule } from 'src/utils/generador.pdf';
+import { PdfDigimonModule } from 'src/utils/generador.pdf';
+import { ExcelDigimonModule } from 'src/utils/excel.util';
+import { LOGO } from 'src/assets/logo';
 
 @Component({
 	selector: 'app-digimon',
@@ -15,6 +16,7 @@ export class DigimonComponent implements OnInit {
 
 	digimones: any[];
 	filterPost = '';
+	logito = LOGO;
 
 	constructor(private digimonService: DigimonService) { }
 
@@ -29,11 +31,11 @@ export class DigimonComponent implements OnInit {
 	}
 
 	async abrirpdf() {
-		(await AlmacenPdfModule.Pokemon.create(this.digimones)).download(`Reporte-Pokemon.pdf`);
+		(await PdfDigimonModule.Digimon.create(this.digimones)).download(`Reporte_Digimon.pdf`);
 	}
-	
-	abrirExcel() {
-		
+
+	async abrirExcel() {
+		await ExcelDigimonModule.Digimon.create(this.digimones);
 	}
 }
 

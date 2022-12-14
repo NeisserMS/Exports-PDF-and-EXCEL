@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlmacenPdfModule } from 'src/utils/generador.pdf';
+import { PdfDigimonModule } from 'src/utils/generador.pdf';
 
 @Component({
 	selector: 'app-root',
@@ -8,5 +8,5 @@ import { AlmacenPdfModule } from 'src/utils/generador.pdf';
 })
 export class AppComponent {
 
-	title = 'Pokémon';
+	title = 'DIGIMON';
 }
