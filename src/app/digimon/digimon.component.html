@@ -5,8 +5,12 @@
 	<div class="busqueda">
 		<input class="form-control" id="myInput" type="text" placeholder="Buscar.." name="filterPost"
 			[(ngModel)]="filterPost">
-		<button type="button" class="btn btn-danger m-3" (click)="abrirpdf()"> Generar PDF</button>
-		<button type="button" class="btn btn-success" (click)="abrirExcel()"> Generar Excel</button>
+		<button type="button" class="btn btn-danger ms-3" (click)="abrirpdf()"> Exportar PDF</button>
+		<button type="button" class="btn btn-success m-3" (click)="abrirExcel()"> Exportar Excel</button>
+		<!-- <input type="file" id="inputFile" accept=".csv, .xlsx" (change)="cargarExcel()" /> -->
+		<!-- <label for="inputFile">
+			<button type="button" class="btn btn-info text-white"> Importar Excel</button>
+		</label> -->
 	</div>
 
 	<table class="table">

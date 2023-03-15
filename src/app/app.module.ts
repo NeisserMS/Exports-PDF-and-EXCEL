@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PdfMakeWrapper } from 'pdfmake-wrapper';
-import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
 
 import { DigimonService } from './service/digimon.service';
+import { InterceptorService } from './service/interceptor.service';
 
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { DigimonComponent } from './digimon/digimon.component';
@@ -29,7 +30,12 @@ PdfMakeWrapper.setFonts(pdfFonts);
 	],
 
 	providers: [
-		DigimonService
+		DigimonService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptorService, // Esta es la clase que se va a encargar de interceptar las peticiones
+			multi: true  // Permite agregar más interceptores en caso se requiera, asi no sobre escribimos el que tenemos.
+		}
 	],
 
 	bootstrap: [

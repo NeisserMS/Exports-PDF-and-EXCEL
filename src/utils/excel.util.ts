@@ -1,6 +1,6 @@
 import { Workbook, Worksheet } from 'exceljs';
 import { DigimonModel } from 'src/app/model/digimon.modal';
-import { LOGO } from 'src/assets/logo';
+import { logo } from './logo_base64';
 
 export module ExcelDigimonModule {
     export class Digimon {
@@ -9,6 +9,7 @@ export module ExcelDigimonModule {
             const workbook = new Workbook();
             const title = 'DigimonesExcel';
             let fecha = new Date();
+            const image = logo;
 
             let worksheet: Worksheet;
             worksheet = workbook.addWorksheet('Hoja 1');
@@ -19,58 +20,48 @@ export module ExcelDigimonModule {
             const rowIndexStart = 1;
 
             let currentColumnIndex = columnIndexStart;
-            let currentRowIndex = rowIndexStart + 3;
+            let currentRowIndex = rowIndexStart + 1;
 
             worksheet.getColumn(1).width = 30
-            worksheet.getColumn(2).width = 50
+            worksheet.getColumn(2).width = 30
             worksheet.getColumn(3).width = 30
-            //worksheet.getRow(1).height = 80;
+            worksheet.getColumn(4).width = 30
 
+            worksheet.getRow(1).height = 50;
 
-            // worksheet.mergeCells('A1:B1')
-            // worksheet.getCell('A1').fill = {
-            //     type: 'pattern',
-            //     pattern: 'solid',
-            //     fgColor: { argb: '3C3C46' }
-            // };
+            const logoId = workbook.addImage({ base64: `data:image/png;base64,${image}`, extension: 'png' });
+            worksheet.addImage(logoId, 'A1:B1');
 
-            // const logoId = workbook.addImage({
-            //     base64: LOGO,
-            //     extension: 'png',
-
-            // });
-            // worksheet.addImage(logoId, 'A1');
-
-            worksheet.getCell('B2').value = {
+            worksheet.getCell('C1').value = {
                 richText: [
                     { font: { italic: false }, text: 'LISTA DE DIGIMONES' },
                 ]
             };
 
-            worksheet.getCell('B2').alignment = {
+            worksheet.getCell('C1').alignment = {
                 horizontal: 'center',
                 vertical: 'middle'
             };
 
-            worksheet.getCell('B2').font = {
+            worksheet.getCell('C1').font = {
                 name: 'Yu Gothic',
                 color: { argb: '2838D3' },
                 bold: true,
                 size: 14,
             };
 
-            worksheet.getCell('C2').value = {
+            worksheet.getCell('D1').value = {
                 richText: [
                     { font: { italic: false }, text: `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}` },
                 ]
             };
 
-            worksheet.getCell('C2').alignment = {
+            worksheet.getCell('D1').alignment = {
                 horizontal: 'center',
                 vertical: 'middle'
             };
 
-            worksheet.getCell('C2').font = {
+            worksheet.getCell('D1').font = {
                 name: 'Yu Gothic',
                 color: { argb: '000000' },
                 bold: true,
@@ -100,4 +91,8 @@ export module ExcelDigimonModule {
             }).catch(err => console.log(err));
         }
     }
+
+
+
+
 }

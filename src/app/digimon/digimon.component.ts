@@ -1,10 +1,9 @@
 
-import { DigimonService } from '../service/digimon.service';
 import { Component, OnInit } from '@angular/core';
-import { DigimonModel } from '../model/digimon.modal';
-import { PdfDigimonModule } from 'src/utils/generador.pdf';
-import { ExcelDigimonModule } from 'src/utils/excel.util';
 import { LOGO } from 'src/assets/logo';
+import { ExcelDigimonModule } from 'src/utils/excel.util';
+import { PdfDigimonModule } from 'src/utils/generador.pdf';
+import { DigimonService } from '../service/digimon.service';
 
 @Component({
 	selector: 'app-digimon',
